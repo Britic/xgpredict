@@ -26,7 +26,11 @@ class RoundService
             ->get();
     }
 
-    public function getUserRoundPredictions(int $userId)
+    /**
+     * @param int $userId
+     * @return array
+     */
+    public function getUserRoundPredictions(int $userId): array
     {
         $roundFixtures = $this->getRoundFixtures();
 
