@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'eXpectedGoals'),
+    'name' => env('APP_NAME', 'XG Predict'),
 
     /*
     |--------------------------------------------------------------------------

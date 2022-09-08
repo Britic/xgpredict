@@ -15,26 +15,23 @@
                 <th>Competition</th>
                 <th>Home Team</th>
                 <th>Away Team</th>
-                <th>Prediction</th>
             </tr>
             </thead>
             <tbody>
             @foreach($fixtures as $fixture)
-            <tr>
-                <td>{{ $fixture->fixture_date->format('l, F j') }}</td>
-                <td>{{ $fixture->fixture_date->format('g:ia') }}</td>
-                <td>{{ $fixture->league->abbr }}</td>
-                <td>{{ $fixture->team1->name }}</td>
-                <td>{{ $fixture->team2->name }}</td>
-                <td>
-                    <select style="width: 40px;">
-                        <option>-</option>
-                        <option>H</option>
-                        <option>A</option>
-                        <option>D</option>
-                    </select>
-                </td>
-            </tr>
+                <tr class="predictionRow">
+                    <td>{{ $fixture->fixture_date->format('l, F j') }}</td>
+                    <td>{{ $fixture->fixture_date->format('g:ia') }}</td>
+                    <td>{{ $fixture->league->abbr }}</td>
+                    <td>
+                        <img class="icon-small" src="/icons/teams/{{ $fixture->team_1 }}.ico" />
+                        <span class="fixture-team-name home-team-name">{{ $fixture->team1->name }}</span>
+                    </td>
+                    <td>
+                        <img class="icon-small" src="/icons/teams/{{ $fixture->team_2 }}.ico" />
+                        <span class="fixture-team-name away-team-name">{{ $fixture->team2->name }}</span>
+                    </td>
+                </tr>
             @endforeach
             </tbody>
         </table>

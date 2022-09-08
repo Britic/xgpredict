@@ -54,5 +54,7 @@ class PredictionsController extends Controller
             $prediction->predicted_result_id = $submittedPrediction;
             $prediction->save();
         }
+
+        return back()->with('success', 'Predictions Saved');
     }
 }

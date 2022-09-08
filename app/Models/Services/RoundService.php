@@ -5,6 +5,7 @@ namespace App\Models\Services;
 use App\Models\Fixture;
 use App\Models\Prediction;
 use App\Models\Round;
+use App\Models\RoundStatus;
 
 class RoundService
 {
@@ -18,6 +19,15 @@ class RoundService
         $this->round = $round;
     }
 
+    /**
+     * @return Round
+     */
+    public static function getActiveRound(): Round
+    {
+        return Round::where('round_status_id', RoundStatus::OPEN)
+            ->orderBy('id', 'desc')
+            ->first();
+    }
 
     public function getRoundFixtures()
     {
