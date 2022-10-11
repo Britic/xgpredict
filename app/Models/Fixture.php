@@ -20,6 +20,12 @@ class Fixture extends Model
         'fixture_date'
     ];
 
+    protected $with = [
+        'team1',
+        'team2',
+        'league'
+    ];
+
     /**
      * @return HasOne
      */
