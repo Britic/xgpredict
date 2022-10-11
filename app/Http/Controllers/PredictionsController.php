@@ -41,7 +41,7 @@ class PredictionsController extends Controller
         $roundFixtures = $this->roundService->getRoundFixtures();
         $userPredictions = $this->roundService->getUserRoundPredictions($user);
 
-        if ($userRoundSubmitted) {
+        if (true === $userRoundSubmitted) {
             return View::make('predictions/submitted', []);
         } else {
 
