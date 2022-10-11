@@ -15,14 +15,14 @@ class RoundService
     public $round;
 
     /**
-     * @param Round $round
+     * @param ?Round $round
      */
-    public function __construct(Round $round)
+    public function __construct(?Round $round)
     {
         $this->round = $round;
 
         if(!$round->id) {
-            $this->round == self::getActiveRound();
+            $this->round = self::getActiveRound();
         }
 
     }
