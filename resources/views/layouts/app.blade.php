@@ -46,6 +46,11 @@
                                 Fixtures
                             </a>
                         </li>
+                        <li>
+                            <a class="nav-link" href="{{ route('submit_predictions') }}">
+                                Submit Predictions
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

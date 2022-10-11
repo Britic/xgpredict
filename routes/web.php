@@ -28,15 +28,18 @@ Route::get('fixtures', [FixtureController::class, 'currentFixtures'])->name('fix
 Route::get('standings', [StandingsController::class, 'index'])->name('standings');
 
 // Predictions
-    // Home
+
+// Home
 Route::get('predictions', [PredictionsController::class, 'index'])->name('predictions');
-    // Submit
+
+// Submit
 Route::get('predictions/submit/{userId?}', [PredictionsController::class, 'submit'])
+    ->name('submit_predictions')
     ->middleware(['auth']);
-    // Process Submit
+
+// Process Submit
 Route::post('predictions/submit/{userId?}', [PredictionsController::class, 'postSubmit'])
     ->middleware(['auth']);
 
 Auth::routes();
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
