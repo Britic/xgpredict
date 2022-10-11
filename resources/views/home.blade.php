@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __("There's nothing here yet. Click 'Submit Predictions' to enter for this week.") }}
                 </div>
             </div>
         </div>

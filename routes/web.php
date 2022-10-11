@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// We don't have a homepage - send them home
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
 
 // Fixtures
