@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\View;
 
 class PredictionsController extends Controller
 {
+    private $roundService;
+
+    public function __construct(RoundService $roundService)
+    {
+        $this->roundService = $roundService;
+    }
+
     /**
      * @return \Illuminate\Contracts\View\View
      */
@@ -30,19 +37,22 @@ class PredictionsController extends Controller
             $user = User::find($userId);
         }
 
-        // We need the active round
-        $activeRound = Round::where('round_status_id', RoundStatus::OPEN)
-            ->orderBy('id', 'desc')
-            ->first();
+        $userRoundSubmitted = $this->roundService->userRoundSubmitted($user);
+        $roundFixtures = $this->roundService->getRoundFixtures();
+        $userPredictions = $this->roundService->getUserRoundPredictions($user);
 
-        // Load the service
-        $rs = new RoundService($activeRound);
+        if ($userRoundSubmitted) {
+            return View::make('predictions/submitted', []);
+        } else {
 
-        return View::make('predictions/submit', [
-            'round' => $activeRound,
-            'fixtures' => $rs->getRoundFixtures(),
-            'predictions' => $rs->getUserRoundPredictions($user->id)
-        ]);
+            return View::make('predictions/submit', [
+                'round' => $this->roundService->round,
+                'fixtures' => $roundFixtures,
+                'predictions' => $userPredictions
+            ]);
+        }
+
+
     }
 
     public function postSubmit(Request $request){
