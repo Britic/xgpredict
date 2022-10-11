@@ -93,6 +93,20 @@
         </nav>
 
         <main class="py-4">
+            @if (session('status'))
+                <div class="container">
+
+                    <div class="row align-content-center">
+                        <div class="col-md-6 offset-3">
+                            <p class="alert alert-success text-center">{{ session('status') }}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            @endif
+
+
             @yield('content')
         </main>
     </div>

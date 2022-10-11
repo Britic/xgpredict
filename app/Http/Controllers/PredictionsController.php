@@ -9,6 +9,8 @@ use App\Models\Services\RoundService;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
 class PredictionsController extends Controller
@@ -65,6 +67,8 @@ class PredictionsController extends Controller
             $prediction->save();
         }
 
-        return back()->with('success', 'Predictions Saved');
+        Session::put('status', 'Predictions Saved');
+
+        return Redirect::route('submit_predictions');
     }
 }
