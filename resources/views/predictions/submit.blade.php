@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
     <div class="container">
 
         <h3>Submit Your Predictions: <small>{{ $round->name }}</small></h3>
