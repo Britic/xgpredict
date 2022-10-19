@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
 
-        <h3>Predictions: <small>{{ $round->name }}!</small></h3>
+        <h3>Predictions: <small>{{ $round->name }}</small></h3>
         <hr />
         <div class="row">
             <h3>Fixtures</h3>
@@ -21,13 +21,13 @@
                         <th>Home</th>
                         <th>Away</th>
                     @foreach ($predictionsData['users'] as $user)
-                        <th>{{ $user->name }}</th>
+                        <th class="th-center">{{ $user->name }}</th>
                     @endforeach
                     </tr>
                 </thead>
                 <tbody>
                 @foreach($predictionsData['fixtures'] as $fixtureId => $fixtureData)
-                    <tr>
+                    <tr class="{{ $fixtureData['hasAction'] ? 'has-action' : '' }}">
                         <td>{{ $fixtureData['fixture']->fixture_date->format('l, F j g:ia') }}</td>
                         <td>{{ $fixtureData['fixture']->league->abbr }}</td>
                         <td>
@@ -39,7 +39,7 @@
                             <span class="fixture-team-name away-team-name">{{ $fixtureData['fixture']->team2->name }}</span>
                         </td>
                     @foreach ($fixtureData['predictions'] as $prediction)
-                        <td>{{ $prediction->result?->abbr }}</td>
+                        <td class="td-center">{{ $prediction->result?->abbr }}</td>
                     @endforeach
                     </tr>
                 @endforeach

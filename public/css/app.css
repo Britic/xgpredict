@@ -10903,21 +10903,16 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-
 .icon-small {
-    height: 25px;
-    width: 25px;
-    margin-right: 10px;
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
 }
 
-.fixture-team-name.fixture-selected {
-    color: #187e2a
+tr.has-action {
+  background-color: #342d1f;
 }
 
-.fixture-team-name.fixture-rejected {
-    color: #8a8a8a
-}
-
-.fixture-team-name.draw-selected {
-    color: #336f81
+table th.th-center, table td.td-center {
+  text-align: center;
 }

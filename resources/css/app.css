@@ -3,3 +3,7 @@
     width: 25px;
     margin-right: 10px;
 }
+
+tr.has-action {
+    background-color: #fffdc1;
+}

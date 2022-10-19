@@ -140,7 +140,7 @@ class RoundService
     {
         $numResultTypes = $this->getNumFixtureResultTypes($fixture);
 
-        return $numResultTypes < 1;
+        return $numResultTypes > 1;
     }
 
     /**

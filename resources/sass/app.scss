@@ -6,3 +6,18 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+.icon-small {
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+}
+
+tr.has-action {
+    background-color: #342d1f;
+}
+
+table th.th-center, table td.td-center {
+    text-align: center;
+}
