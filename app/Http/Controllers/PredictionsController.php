@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\View;
 
 class PredictionsController extends Controller
 {
-    private $roundService;
+    private RoundService $roundService;
 
     public function __construct(RoundService $roundService)
     {
@@ -28,6 +28,8 @@ class PredictionsController extends Controller
     public function index()
     {
         return View::make('predictions/index', [
+            'round' => $this->roundService->round,
+            'predictionsData' => $this->roundService->getRoundPredictionsData()
         ]);
     }
 
