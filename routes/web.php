@@ -31,7 +31,7 @@ Route::get('standings', [StandingsController::class, 'index'])->name('standings'
 // Predictions
 
 // Home
-Route::get('predictions', [PredictionsController::class, 'index'])->name('predictions');
+Route::get('predictions/status', [PredictionsController::class, 'index'])->name('predictions');
 
 // Submit
 Route::get('predictions/submit/{userId?}', [PredictionsController::class, 'submit'])
