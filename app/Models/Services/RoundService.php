@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class RoundService
 {
-    public $round;
+    public Round $round;
 
     /**
      * @param ?Round $round
@@ -96,10 +96,76 @@ class RoundService
      */
     public function userRoundSubmitted(User $user): bool
     {
+        // The number fo fixtures for this round
         $numRoundFixtures = $this->getRoundFixtures()->count();
+        // The number of predictions the user has submitted
         $numUserRoundPredictions = $this->userRoundPredictionCount($user);
 
         return $numRoundFixtures === $numUserRoundPredictions;
+    }
+
+    /**
+     * @param Fixture $fixture
+     * @param User $user
+     * @return ?Prediction
+     */
+    function getFixturePredictionByUser(Fixture $fixture, User $user): ?Prediction
+    {
+        return Prediction::where('fixture_id', '=', $fixture->id)
+            ->where('user_id', '=', $user->id)
+            ->first();
+    }
+
+    /**
+     * Returns the number of different result types predicted for this fixture
+     *
+     * @param Fixture $fixture
+     * @return int
+     */
+    public function getNumFixtureResultTypes(Fixture $fixture): int
+    {
+        return DB::table('predictions')
+            ->where('fixture_id', '=', $fixture->id)
+            ->distinct()
+            ->count('predicted_result_id');
+    }
+
+    /**
+     * Returns true if there is more than one result type predicted for this fixture
+     *
+     * @param Fixture $fixture
+     * @return bool
+     */
+    public function fixtureHasAction(Fixture $fixture): bool
+    {
+        $numResultTypes = $this->getNumFixtureResultTypes($fixture);
+
+        return $numResultTypes < 1;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoundPredictionsData(): array
+    {
+        $data = [];
+
+        $users = User::all();
+        $data['users'] = $users;
+
+        // The fixtures for this round
+        $roundFixtures = $this->getRoundFixtures();
+
+        foreach ($roundFixtures as $fixture) {
+            $data['fixtures'][$fixture->id]['fixture'] = $fixture;
+            $data['fixtures'][$fixture->id]['hasAction'] = $this->fixtureHasAction($fixture);
+            foreach ($users as $user) {
+                $prediction = $this->getFixturePredictionByUser($fixture, $user);
+                $data['fixtures'][$fixture->id]['predictions'][$user->id] = $prediction ?: new Prediction();
+            }
+        }
+
+        return $data;
     }
 
 }
