@@ -13,11 +13,12 @@
 
         <div class="row">
 
-            <table class="table">
+
+            <table class="table fs-20">
                 <thead>
                     <tr>
-                        <th>Date &amp; Time</th>
-                        <th>Competition</th>
+                        <th class="d-none d-lg-table-cell">Date &amp; Time</th>
+                        <th class="d-none d-lg-table-cell">Competition</th>
                         <th>Home</th>
                         <th>Away</th>
                     @foreach ($predictionsData['users'] as $user)
@@ -28,14 +29,14 @@
                 <tbody>
                 @foreach($predictionsData['fixtures'] as $fixtureId => $fixtureData)
                     <tr class="{{ $fixtureData['hasAction'] ? 'has-action' : '' }}">
-                        <td>{{ $fixtureData['fixture']->fixture_date->format('l, F j g:ia') }}</td>
-                        <td>{{ $fixtureData['fixture']->league->abbr }}</td>
+                        <td class="d-none d-lg-table-cell">{{ $fixtureData['fixture']->fixture_date->format('l, F j g:ia') }}</td>
+                        <td class="d-none d-lg-table-cell">{{ $fixtureData['fixture']->league->abbr }}</td>
                         <td>
-                            <img class="icon-small" src="/icons/teams/{{ $fixtureData['fixture']->team_1 }}.ico" />
+                            <img class="icon-small d-none d-lg-table-cell" src="/icons/teams/{{ $fixtureData['fixture']->team_1 }}.ico" />
                             <span class="fixture-team-name home-team-name">{{ $fixtureData['fixture']->team1->name }}</span>
                         </td>
                         <td>
-                            <img class="icon-small" src="/icons/teams/{{ $fixtureData['fixture']->team_2 }}.ico" />
+                            <img class="icon-small d-none d-lg-table-cell" src="/icons/teams/{{ $fixtureData['fixture']->team_2 }}.ico" />
                             <span class="fixture-team-name away-team-name">{{ $fixtureData['fixture']->team2->name }}</span>
                         </td>
                     @foreach ($fixtureData['predictions'] as $prediction)
