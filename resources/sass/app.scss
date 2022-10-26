@@ -21,3 +21,15 @@ tr.has-action {
 table th.th-center, table td.td-center {
     text-align: center;
 }
+
+.fixture-team-name.fixture-selected {
+    color: #187e2a
+}
+
+.fixture-team-name.fixture-rejected {
+    color: #8a8a8a
+}
+
+.fixture-team-name.draw-selected {
+    color: #336f81
+}
