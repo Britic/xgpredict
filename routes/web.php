@@ -4,6 +4,7 @@ use App\Http\Controllers\FixtureController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PredictionsController;
 use App\Http\Controllers\StandingsController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,3 +45,5 @@ Route::post('predictions/submit/{userId?}', [PredictionsController::class, 'post
 
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('testEmail', [TestController::class, 'testEmail']);
