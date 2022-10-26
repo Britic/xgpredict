@@ -47,8 +47,6 @@ class PredictionsController extends Controller
         $userPredictions = $this->roundService->getUserRoundPredictions($user);
 
         if (true === $userRoundSubmitted) {
-            // Notify the User
-            $user->notify(new PredictionConfirmation($this->roundService->round, $user));
             // Show the submitted view
             return View::make('predictions/submitted', []);
         } else {
@@ -66,11 +64,16 @@ class PredictionsController extends Controller
     public function postSubmit(Request $request){
 
         $userId = $request->get('user_id');
+        $user = Auth::user();
 
         foreach ($request->get('predictions') as $predictionId => $submittedPrediction) {
             $prediction = Prediction::find($predictionId);
             $prediction->predicted_result_id = $submittedPrediction;
             $prediction->save();
+        }
+
+        if ($this->roundService->userRoundSubmitted($user)) {
+            $user->notify(new PredictionConfirmation($this->roundService->round));
         }
 
         Session::put('status', 'Predictions Saved');
