@@ -15,7 +15,6 @@ class PredictionConfirmation extends Notification
     use Queueable;
 
     private Round $round;
-    private User $user;
     private RoundService $rs;
 
     /**
@@ -23,10 +22,9 @@ class PredictionConfirmation extends Notification
      *
      * @return void
      */
-    public function __construct(Round $round, User $user)
+    public function __construct(Round $round)
     {
         $this->round = $round;
-        $this->user = $user;
         $this->rs = new RoundService($round);
     }
 
