@@ -7,6 +7,7 @@ use App\Models\Round;
 use App\Models\RoundStatus;
 use App\Models\Services\RoundService;
 use App\Models\User;
+use App\Notifications\PredictionConfirmation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -46,6 +47,9 @@ class PredictionsController extends Controller
         $userPredictions = $this->roundService->getUserRoundPredictions($user);
 
         if (true === $userRoundSubmitted) {
+            // Notify the User
+            $user->notify(new PredictionConfirmation($this->roundService->round, $user));
+            // Show the submitted view
             return View::make('predictions/submitted', []);
         } else {
 
