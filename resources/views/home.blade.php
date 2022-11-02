@@ -7,6 +7,8 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
+
+
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -14,7 +16,7 @@
                         </div>
                     @endif
 
-                    {{ __("There's nothing here yet. Click 'Submit Predictions' to enter for this week.") }}
+                    {{ __("There's nothing here yet. Click 'Submit Predictions' to enter for the current week.") }}
                 </div>
             </div>
         </div>
