@@ -36,11 +36,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <!--
                         <li>
                             <a class="nav-link" href="{{ route('standings') }}">
                                 Standings
                             </a>
                         </li>
+                        -->
                         <li>
                             <a class="nav-link" href="{{ route('fixtures') }}">
                                 Fixtures
