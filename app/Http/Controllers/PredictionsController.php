@@ -11,6 +11,7 @@ use App\Notifications\PredictionConfirmation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
@@ -24,10 +25,14 @@ class PredictionsController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
+        
+        if (Auth::user()->id !== 1) {
+            return Response::make('Not found', 404);
+        }
+
         return View::make('predictions/index', [
             'round' => $this->roundService->round,
             'predictionsData' => $this->roundService->getRoundPredictionsData()
