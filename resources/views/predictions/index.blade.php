@@ -32,11 +32,11 @@
                         <td class="d-none d-lg-table-cell">{{ $fixtureData['fixture']->fixture_date->format('l, F j g:ia') }}</td>
                         <td class="d-none d-lg-table-cell">{{ $fixtureData['fixture']->league->abbr }}</td>
                         <td>
-                            <img class="icon-small d-lg-table-cell" src="/icons/teams/{{ $fixtureData['fixture']->team_1 }}.ico" />
+                            <img class="icon-small" src="/icons/teams/{{ $fixtureData['fixture']->team_1 }}.ico" />
                             <span class="fixture-team-name home-team-name">{{ $fixtureData['fixture']->team1->name }}</span>
                         </td>
                         <td>
-                            <img class="icon-small d-lg-table-cell" src="/icons/teams/{{ $fixtureData['fixture']->team_2 }}.ico" />
+                            <img class="icon-small" src="/icons/teams/{{ $fixtureData['fixture']->team_2 }}.ico" />
                             <span class="fixture-team-name away-team-name">{{ $fixtureData['fixture']->team2->name }}</span>
                         </td>
                     @foreach ($fixtureData['predictions'] as $prediction)
